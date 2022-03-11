@@ -13,7 +13,11 @@ export class FileMgr {
     const isExist = fs.existsSync(this.dbDirectory);
 
     if (!isExist) {
-      fs.mkdir(this.dbDirectory);
+      fs.mkdir(this.dbDirectory, { recursive: true }, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
     }
   }
 
